@@ -4,7 +4,7 @@ import { products } from "@/data/site";
 export function Products() {
   const [index, setIndex] = useState(0);
   const total = products.length;
-  const active = products[index];
+  const active = products[index]!;
 
   const go = (dir: number) => setIndex((i) => (i + dir + total) % total);
 
