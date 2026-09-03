@@ -36,7 +36,7 @@ export function Hero() {
       <img
         src={heroImage}
         alt="Royal Beverage product range"
-        className="pointer-events-none mx-auto mt-4 w-full max-w-4xl float-slow"
+        className="pointer-events-none mx-auto mt-6 h-[26rem] w-auto object-contain float-slow md:h-[34rem]"
       />
     </section>
   );
