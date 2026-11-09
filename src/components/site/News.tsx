@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { news } from "@/data/site";
 import { SketchArrow } from "./Logo";
+import { Reveal } from "./Reveal";
 
 export function News() {
   const n = news.length;
@@ -10,10 +11,12 @@ export function News() {
   return (
     <section id="news" className="relative overflow-hidden bg-cream grain py-20 md:py-24">
       <div className="mx-auto max-w-[110rem] px-6 md:px-10">
+        <Reveal>
         <p className="script text-3xl text-secondary md:text-4xl">Media Center</p>
-        <h2 className="distress mt-2 font-display text-[clamp(3.4rem,8.5vw,7.5rem)] leading-[0.9] uppercase text-secondary">
+        <h2 className="distress mt-2 font-display text-[clamp(2.9rem,8.5vw,7.5rem)] leading-[0.9] uppercase text-secondary">
           Media &amp; News
         </h2>
+        </Reveal>
       </div>
 
       <div className="relative mt-8 h-[600px] overflow-hidden md:h-[620px]">

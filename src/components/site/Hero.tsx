@@ -18,14 +18,14 @@ export function Hero() {
       </div>
       <div className="relative mx-auto max-w-[110rem] px-4 pt-6 pb-16 md:pb-24">
         <h1 className="distress relative z-0 text-center font-display leading-[0.84] uppercase text-brand-red select-none">
-          <span className="block text-[clamp(5.5rem,16.5vw,15.5rem)]">Royal</span>
-          <span className="block text-[clamp(5.5rem,16.5vw,15.5rem)]">Beverage</span>
+          <span className="block text-[clamp(4.3rem,16.5vw,15.5rem)]">Royal</span>
+          <span className="block text-[clamp(4.3rem,16.5vw,15.5rem)]">Beverage</span>
         </h1>
 
         <img
           src={heroImage}
           alt="A glass of cola with a dramatic splash"
-          className="pointer-events-none absolute top-[44%] left-1/2 z-10 h-[clamp(22rem,60vh,37rem)] w-auto -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-2xl"
+          className="anim-hero-in pointer-events-none absolute top-[50%] left-1/2 z-10 h-[17rem] w-auto -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-2xl md:top-[44%] md:h-[clamp(22rem,60vh,37rem)]"
         />
 
         <div

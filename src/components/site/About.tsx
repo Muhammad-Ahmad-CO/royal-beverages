@@ -1,4 +1,5 @@
 import { products } from "@/data/site";
+import { Reveal } from "./Reveal";
 
 const canOf = (name: string) => products.find((p) => p.name === name)?.image ?? "";
 
@@ -6,12 +7,14 @@ export function About() {
   return (
     <section id="about" className="relative overflow-hidden bg-cream grain">
       <div className="relative mx-auto max-w-[110rem] px-6 pt-10 pb-40 md:px-10 md:pb-48">
+        <Reveal>
         <p className="script text-3xl text-secondary md:text-4xl">Something about us</p>
 
         <h2 className="distress mt-3 font-display leading-[0.85] uppercase text-secondary">
           <span className="block text-[clamp(4rem,9.5vw,8.5rem)]">Our</span>
           <span className="block text-[clamp(4rem,9.5vw,8.5rem)]">Company</span>
         </h2>
+        </Reveal>
 
         <div className="relative z-10 mt-8 max-w-xl">
           <p className="text-lg leading-relaxed text-secondary/85">

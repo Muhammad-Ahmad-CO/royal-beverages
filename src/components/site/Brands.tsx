@@ -1,11 +1,14 @@
+import { Reveal } from "./Reveal";
 export function Brands() {
   return (
     <section id="production" className="relative overflow-hidden bg-brand-red text-primary-foreground">
       <div className="mx-auto max-w-[110rem] px-6 pt-20 pb-44 md:px-10">
+        <Reveal>
         <p className="script text-3xl md:text-4xl">Meet the brands</p>
-        <h2 className="distress mt-2 font-display text-[clamp(3.4rem,8.5vw,7.5rem)] leading-[0.9] uppercase">
+        <h2 className="distress mt-2 font-display text-[clamp(2.9rem,8.5vw,7.5rem)] leading-[0.9] uppercase">
           Our Brands
         </h2>
+        </Reveal>
 
         <div className="mt-16 grid grid-cols-2 items-center gap-x-8 gap-y-14 text-center md:grid-cols-3 md:gap-y-20">
           <div className="flex h-28 flex-col items-center justify-center">

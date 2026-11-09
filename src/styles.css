@@ -208,3 +208,11 @@
 @utility anim-fade-up {
   animation: rb-fade-up 0.5s ease both;
 }
+
+@keyframes rb-hero-in {
+  from { scale: 0.82; opacity: 0; }
+  to { scale: 1; opacity: 1; }
+}
+@utility anim-hero-in {
+  animation: rb-hero-in 0.9s cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
