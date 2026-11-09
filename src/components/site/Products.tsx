@@ -1,87 +1,107 @@
-import { useState } from "react";
-import { products } from "@/data/site";
+import { useRef, useState } from "react";
+import { products, heroImage } from "@/data/site";
+import { SketchArrow } from "./Logo";
+
+const WITH_GLASS = new Set([
+  "RC Cola",
+  "RC Cola Zero",
+  "Royal Crown Cola",
+  "Frost Cola",
+  "Frost Lemon Lime",
+  "Frost Orange",
+]);
 
 export function Products() {
   const [index, setIndex] = useState(0);
+  const [dir, setDir] = useState(1);
   const total = products.length;
   const active = products[index]!;
+  const dragX = useRef<number | null>(null);
 
-  const go = (dir: number) => setIndex((i) => (i + dir + total) % total);
+  const go = (d: number) => {
+    setDir(d);
+    setIndex((i) => (i + d + total) % total);
+  };
 
   return (
-    <section id="products" className="relative overflow-hidden bg-brand-red py-24 text-primary-foreground">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-25"
-        style={{
-          backgroundImage:
-            "repeating-radial-gradient(circle at 50% 40%, transparent 0 78px, rgba(255,255,255,0.35) 78px 80px)",
-        }}
-      />
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="flex items-start justify-between">
+    <section id="products" className="relative overflow-hidden bg-brand-red text-primary-foreground">
+      <div className="relative mx-auto max-w-[110rem] px-6 pt-16 pb-14 md:px-10">
+        <div className="flex items-start justify-between gap-6">
           <div>
-            <p className="script text-3xl">Meet the speed</p>
-            <h2 className="font-display text-6xl uppercase md:text-8xl">Our Products</h2>
+            <p className="script text-3xl md:text-4xl">Meet the speed</p>
+            <h2 className="distress mt-2 font-display text-[clamp(3.4rem,8.5vw,7.5rem)] leading-[0.9] uppercase">
+              Our Products
+            </h2>
           </div>
-          <div className="font-display text-4xl md:text-6xl">
-            {String(index + 1).padStart(2, "0")}
-            <span className="opacity-50"> / {total}</span>
+          <div className="distress shrink-0 pt-4 font-display text-6xl md:text-8xl">
+            {index + 1}
+            <span className="opacity-45"> / {total}</span>
           </div>
         </div>
 
-        <div className="mt-14 grid items-center gap-10 md:grid-cols-2">
-          <div className="order-2 md:order-1">
-            <p className="script text-3xl">{active.tagline}</p>
-            <h3 className="mt-2 font-display text-5xl leading-[0.9] uppercase md:text-7xl">
-              {active.name}
-            </h3>
-            <button className="mt-8 rounded-full bg-cream px-8 py-4 text-sm font-semibold tracking-widest uppercase text-brand-red transition-transform hover:-translate-y-0.5">
-              View product
-            </button>
+        <div
+          className="relative mt-4 h-[560px] cursor-grab touch-pan-y select-none md:h-[620px]"
+          onPointerDown={(e) => {
+            dragX.current = e.clientX;
+          }}
+          onPointerUp={(e) => {
+            if (dragX.current === null) return;
+            const dx = e.clientX - dragX.current;
+            if (dx < -60) go(1);
+            else if (dx > 60) go(-1);
+            dragX.current = null;
+          }}
+        >
+          <svg
+            aria-hidden="true"
+            className="absolute top-1/2 left-1/2 h-[880px] w-[880px] -translate-x-1/2 -translate-y-1/2 opacity-60"
+            viewBox="0 0 880 880"
+            fill="none"
+          >
+            {[300, 356, 412].map((r) => (
+              <circle key={r} cx="440" cy="440" r={r} stroke="rgba(0,0,0,0.13)" strokeWidth="2" />
+            ))}
+          </svg>
+          <div className="absolute top-1/2 left-1/2 h-[470px] w-[470px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream md:h-[540px] md:w-[540px]" />
 
-            <div className="mt-10 flex items-center gap-4">
-              <button
-                onClick={() => go(-1)}
-                aria-label="Previous product"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-primary-foreground/50 transition-colors hover:bg-primary-foreground hover:text-brand-red"
-              >
-                ←
-              </button>
-              <button
-                onClick={() => go(1)}
-                aria-label="Next product"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-primary-foreground/50 transition-colors hover:bg-primary-foreground hover:text-brand-red"
-              >
-                →
-              </button>
-            </div>
-          </div>
-
-          <div className="relative order-1 flex justify-center md:order-2">
-            <div className="absolute top-1/2 left-1/2 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream md:h-[28rem] md:w-[28rem]" />
+          <div
+            key={active.name}
+            className={`absolute inset-0 ${dir > 0 ? "anim-in-right" : "anim-in-left"}`}
+          >
+            {WITH_GLASS.has(active.name) && (
+              <img
+                src={heroImage}
+                alt=""
+                aria-hidden="true"
+                className="absolute top-1/2 left-[calc(50%-5rem)] h-[340px] w-auto -translate-y-[52%] object-contain md:left-[calc(50%-7.5rem)] md:h-[430px]"
+              />
+            )}
             <img
-              key={active.image}
               src={active.image}
               alt={active.name}
-              className="relative h-[24rem] w-auto object-contain drop-shadow-2xl md:h-[32rem]"
+              draggable={false}
+              className="absolute top-1/2 left-1/2 h-[440px] w-auto -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-2xl md:h-[520px]"
             />
+          </div>
+
+          <div key={`t-${active.name}`} className="anim-fade-up absolute top-[16%] left-[2%] z-10 max-w-md md:left-[4%]">
+            <p className="script text-3xl md:text-4xl">{active.tagline}</p>
+            <h3 className="distress mt-2 font-display text-5xl leading-[0.92] uppercase md:text-[4.2rem]">
+              {active.name}
+            </h3>
+            <button className="mt-7 bg-cream px-9 py-4 font-display text-xl tracking-wide text-brand-red uppercase shadow-lg transition-transform hover:-translate-y-0.5">
+              View Product
+            </button>
           </div>
         </div>
 
-        <div className="mt-16 flex gap-4 overflow-x-auto pb-4">
-          {products.map((p, i) => (
-            <button
-              key={p.name}
-              onClick={() => setIndex(i)}
-              className={`flex h-24 w-20 shrink-0 items-center justify-center rounded-2xl border transition-all ${
-                i === index
-                  ? "border-primary-foreground bg-primary-foreground/15"
-                  : "border-primary-foreground/25 hover:border-primary-foreground/60"
-              }`}
-            >
-              <img src={p.image} alt={p.name} className="h-20 w-auto object-contain" />
-            </button>
-          ))}
+        <div className="relative z-10 mt-2 flex items-center justify-center gap-10">
+          <button onClick={() => go(-1)} aria-label="Previous product" className="p-2 transition-transform hover:-translate-x-1">
+            <SketchArrow dir="left" className="h-7 w-16" />
+          </button>
+          <button onClick={() => go(1)} aria-label="Next product" className="p-2 transition-transform hover:translate-x-1">
+            <SketchArrow dir="right" className="h-7 w-16" />
+          </button>
         </div>
       </div>
     </section>

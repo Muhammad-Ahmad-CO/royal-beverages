@@ -1,66 +1,64 @@
+import { Logo } from "./Logo";
+
+const nav = [
+  { label: "Home", href: "#home" },
+  { label: "The Story", href: "#about" },
+  { label: "Production", href: "#production" },
+  { label: "Explore Products", href: "#products" },
+  { label: "Our Team", href: "#news" },
+  { label: "Journal", href: "#news" },
+  { label: "Get in Touch", href: "#contact" },
+];
+
+const legal = ["FAQ", "Contact", "Privacy Policy", "Terms & Conditions", "Cookie Policy", "Cookie Settings"];
+
 export function Footer() {
   return (
-    <footer id="contact" className="bg-brand-red py-20 text-primary-foreground">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
+    <footer id="contact" className="bg-cream grain text-secondary">
+      <div className="mx-auto max-w-[110rem] px-6 pt-16 pb-8 md:px-10">
+        <div className="grid gap-14 md:grid-cols-[minmax(300px,5fr)_7fr]">
           <div>
-            <h2 className="font-display text-5xl leading-[0.9] uppercase md:text-7xl">
-              Every success
-              <br />
-              begins with a plan
-            </h2>
-            <form
-              className="mt-8 flex max-w-md gap-3"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                required
-                placeholder="Your email"
-                className="w-full rounded-full bg-primary-foreground/15 px-6 py-4 text-sm placeholder:text-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary-foreground/60"
-              />
-              <button className="rounded-full bg-cream px-7 py-4 text-sm font-semibold tracking-widest uppercase text-brand-red">
-                Submit
-              </button>
-            </form>
-            <p className="mt-3 text-sm text-primary-foreground/70">
-              Crafted content. Once a month, never more.
-            </p>
+            <Logo className="scale-110" />
+            <div className="mt-24 md:mt-32">
+              <h3 className="distress font-display text-5xl uppercase md:text-6xl">Newsletter</h3>
+              <p className="script mt-2 text-2xl text-secondary/80">
+                Crafted content. Once a month, never more.
+              </p>
+              <form className="mt-5 flex max-w-md" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  required
+                  placeholder="Email Address"
+                  className="w-full min-w-0 border border-secondary/40 bg-transparent px-4 py-3.5 text-[0.95rem] text-secondary placeholder:text-secondary/50 focus:border-secondary focus:outline-none"
+                />
+                <button className="shrink-0 bg-secondary px-7 font-display text-lg tracking-wide text-secondary-foreground uppercase transition-colors hover:bg-brand-red">
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
 
-          <div className="space-y-3 text-sm">
-            <p className="script text-2xl">Navigate</p>
-            {["Home", "The Story", "Production", "Explore Products", "Our Team", "Journal", "Get in Touch"].map(
-              (l) => (
-                <a key={l} href="#home" className="block text-primary-foreground/80 hover:text-primary-foreground">
-                  {l}
-                </a>
-              ),
-            )}
-          </div>
-
-          <div className="space-y-3 text-sm">
-            <p className="script text-2xl">Contact</p>
-            <p className="text-primary-foreground/80">
-              Velekince
-              <br />
-              60010, Gjilan, Kosovo
-            </p>
-            <a href="mailto:info@royalbev.com" className="block text-primary-foreground/80 hover:text-primary-foreground">
-              info@royalbev.com
-            </a>
-            <a href="tel:+38344552112" className="block text-primary-foreground/80 hover:text-primary-foreground">
-              +383 44 552 112
-            </a>
-          </div>
+          <nav className="flex flex-col items-start">
+            {nav.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className="distress font-display text-[clamp(2.6rem,5.2vw,4.3rem)] leading-[1.06] uppercase transition-all hover:translate-x-3 hover:text-brand-red"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-primary-foreground/25 pt-6 text-xs text-primary-foreground/70">
+        <div className="mt-20 flex flex-wrap items-center justify-between gap-x-10 gap-y-3 border-t border-secondary/15 pt-6 text-[0.85rem] text-secondary/75">
           <span>© 2026 Royal Beverage. All Rights Reserved.</span>
-          <div className="flex gap-6">
-            <a href="#contact">FAQ</a>
-            <a href="#contact">Privacy Policy</a>
-            <a href="#contact">Terms &amp; Conditions</a>
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            {legal.map((l) => (
+              <a key={l} href="#contact" className="transition-colors hover:text-brand-red">
+                {l}
+              </a>
+            ))}
           </div>
         </div>
       </div>

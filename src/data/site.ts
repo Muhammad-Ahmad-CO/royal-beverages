@@ -47,7 +47,6 @@ export const heroImage = heroDisplay.url;
 export type Product = { name: string; tagline: string; image: string };
 
 export const products: Product[] = [
-  { name: "Frost Cola", tagline: "Classic Chill, Reinvented", image: frostCola.url },
   { name: "RC Cola", tagline: "The Original", image: rcCola.url },
   { name: "RC Cola Zero", tagline: "Zero Sugar", image: rcColaZero.url },
   { name: "Royal Crown Cola", tagline: "Rich and Timeless", image: royalCrown.url },
@@ -58,15 +57,16 @@ export const products: Product[] = [
   { name: "RC Refresher Orange", tagline: "Pure Citrus Kick", image: orange.url },
   { name: "RC Refresher Tonic Water", tagline: "Bittersweet Perfection", image: tonic.url },
   { name: "RC Refresher Tropic", tagline: "Tropic in Every Sip", image: tropic.url },
-  { name: "Red Rain Energy Drink", tagline: "Fuel the Storm", image: redRain.url },
+  { name: "Frost Cola", tagline: "Classic Chill, Reinvented", image: frostCola.url },
+  { name: "Frost Lemon Lime", tagline: "Zesty. Bold. Frosted", image: frostLemonLime.url },
+  { name: "Frost Orange", tagline: "Citrus Spark, Frost Style", image: frostOrange.url },
   { name: "Frostea Ice Tea", tagline: "Chill in Every Sip", image: frostea.url },
   { name: "Frostea Forest Fruits", tagline: "Wildly Refreshing", image: forestFruits.url },
   { name: "Frostea Elderflower", tagline: "Floral. Fresh. Unique.", image: elderflower.url },
   { name: "Frostea Lemon Peach", tagline: "Zesty Meets Smooth", image: lemonPeach.url },
-  { name: "Royal Lemon Water", tagline: "A Royal Touch of Lemon", image: lemonWater.url },
+  { name: "Red Rain Energy Drink", tagline: "Fuel the Storm", image: redRain.url },
   { name: "Bizon", tagline: "Unleash the Charge", image: bizon.url },
-  { name: "Frost Lemon Lime", tagline: "Zesty. Bold. Frosted", image: frostLemonLime.url },
-  { name: "Frost Orange", tagline: "Citrus Spark, Frost Style", image: frostOrange.url },
+  { name: "Royal Lemon Water", tagline: "A Royal Touch of Lemon", image: lemonWater.url },
 ];
 
 export const brands = [
